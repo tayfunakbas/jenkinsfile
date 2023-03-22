@@ -3,7 +3,7 @@ pipeline {
     stages {
         
         stage('Get Source Code From Github') {
-           echo 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 | docker login -u tayfunakbas ghcr.io:/luciopanepinto/pacman.git
+           echo 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 | docker login -u tayfunakbas ghcr.io/luciopanepinto/pacman.git
            docker pull ghcr.io/tayfunakbas/codestock/nginx:0.0.1
         }
 
