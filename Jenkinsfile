@@ -3,8 +3,8 @@ pipeline {
     stages {
         
         stage('Get Source Code From Github') {
-           echo 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 | docker login -u tayfunakbas ghcr.io/luciopanepinto/pacman.git
-           docker pull ghcr.io:/tayfunakbas/codestock/nginx:0.0.1
+           echo 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 | docker login -u tayfunakbas ghcr.io
+           docker pull ghcr.io/tayfunakbas/codestock/nginx:0.0.1
         }
 
         stage('Build Stage'){
@@ -19,8 +19,11 @@ pipeline {
             }
         }
 
+        stage('Tag the Image'){
+            docker tag ghcr.io/tayfunakbas/codestock/nginx:0.0.1 ghcr.io/tayfunakbas/codestock/nginx:0.0.2
+        }
         stage('Deploy to Docker'){
-            docker run -it --port 8080:40000 -d ghcr.io/tayfunakbas/codestock/nginx:0.0.1
+            docker run -it --port 8080:40000 -d ghcr.io/tayfunakbas/codestock/nginx:0.0.2
         }        
     }
 }
