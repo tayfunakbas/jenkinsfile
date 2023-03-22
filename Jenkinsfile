@@ -6,7 +6,7 @@ pipeline {
            docker logout
            echo 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 | docker login -u tayfunakbas --password-stdin ghcr.io
 //            echo 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 | docker login -u tayfunakbas ghcr.io
-           docker pull tayfunakbas/codestock/nginx:0.0.1
+           docker pull codestock/nginx:0.0.1
         }
 
         stage('Build Stage'){
