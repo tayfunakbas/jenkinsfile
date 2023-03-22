@@ -1,44 +1,5 @@
 pipeline {
     agent any
-    tools { 
-        jdk 'oraclejdk11'
-        maven 'maven353'
-        nodejs "nodejs 16.1.0"
-    }
-    environment {
-        PROJECT_NAME = "${params.PROJECT_NAME}"
-        SERVICE_NAME = "${params.SERVICE_NAME}"
-        ENV_NAME = "${params.ENV_NAME}"
-
-        OCP_REGION_IST = "${params.OCP_REGION_IST}"
-        OCP_REGION_ANK = "${params.OCP_REGION_ANK}"
-
-        OCP_USER_CREDENTIAL = credentials('ocpusercredential')
-        OCP_NAMESPACE = "${params.OCP_NAMESPACE}"
-		//OCP_NAMESPACE = "${PROJECT_NAME}-${SERVICE_NAME}-${ENV_NAME}"
-
-        GIT_PROJECT_URL = "${params.GIT_PROJECT_URL}"
-        
-        IMAGE_NAME = "${PROJECT_NAME}-${SERVICE_NAME}-${ENV_NAME}"
-        //IMAGE_VERSION = "${params.IMAGE_VERSION}"
-
-        HELM_RELEASE_NAME = "${PROJECT_NAME}-${SERVICE_NAME}-${ENV_NAME}"
-        
-        GITLAB_CREDENTIAL_ID = 'gitlab_ee_credential'
-        
-        GIT_HELM_CHART_PROJECT_URL = "${params.GIT_HELM_CHART_PROJECT_URL}"
-        GIT_HELM_CHART_BRANCH = "${params.GIT_HELM_CHART_BRANCH}"
-        GIT_HELM_VALUES_PROJECT_URL = "${params.GIT_HELM_VALUES_PROJECT_URL}"
-
-        IMAGE_REGISTRY_URL = "${params.IMAGE_REGISTRY_URL}"
-        IMAGE_REGISTRY_USERNAME = "${params.IMAGE_REGISTRY_USERNAME}"
-        IMAGE_REGISTRY_PWD = "${params.IMAGE_REGISTRY_PWD}"
-
-        SONAR_PROJECT_NAME = "${PROJECT_NAME}-${SERVICE_NAME}-${ENV_NAME}"
-    }
-    parameters {
-        booleanParam(name: "SONARQUBE_ENABLED", defaultValue: true)
-    }
     stages {
         stage('Clean Workspace') {
             steps {
