@@ -25,7 +25,7 @@ pipeline {
             sh 'docker tag ghcr.io/tayfunakbas/codestock/nginx:0.0.1 nginx:0.0.2'
         }
         stage('Deploy to Docker'){
-            docker run -it --port 8080:40000 -d nginx:0.0.2
+            sh 'docker run -it --port 8080:40000 -d nginx:0.0.2'
         }        
     }
 }
