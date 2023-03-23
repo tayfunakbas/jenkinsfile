@@ -18,7 +18,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'githubcred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''#!/bin/bash -e
-                        docker pull ${USERNAME}:${PASSWORD}@ghcr.oi/tayfunakbas/codestock/nginx:0.0.1}
+                        docker login -u  ${USERNAME} -p ${PASSWORD} ghcr.oi/tayfunakbas/codestock/nginx:0.0.1
+                        docker pull ghcr.oi/tayfunakbas/codestock/nginx:0.0.1}
                     '''
                 echo $USERNAME
                 echo $PASSWORD
