@@ -1,11 +1,16 @@
 pipeline {
     agent any
+
+    environment{
+    GITHUB_USER_CREDENTIAL = credentials('githubcred')
+    }
+    
     stages {
         
         stage('Get Source Code From Github') {
             steps{
            sh '''docker logout
-           echo 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 | docker login -u tayfunakbas ghcr.oi/tayfunakbas/codestock/nginx:0.0.1
+           docker login -u  ${GITHUB_USER_CREDENTIAL_PSW} -p ${GITHUB_USER_CREDENTIAL_USR}  ghcr.oi/tayfunakbas/codestock/nginx:0.0.1
            docker pull ghcr.oi/tayfunakbas/codestock/nginx:0.0.1'''
             }
         }
