@@ -21,8 +21,8 @@ pipeline {
                         docker login -u  ${USERNAME} -p ${PASSWORD} ghcr.oi/tayfunakbas/codestock/nginx:0.0.1
                         docker pull ghcr.oi/tayfunakbas/codestock/nginx:0.0.1}
                     '''
-                echo $USERNAME
-                echo $PASSWORD
+                    echo ${USERNAME}
+                    echo ${PASSWORD}
                 }
             }
         }
