@@ -9,8 +9,7 @@ pipeline {
         
         stage('Get Source Code From Github') {
             steps{
-           sh '''docker logout
-           docker login -u  ${GITHUB_USER_CREDENTIAL_PSW} -p ${GITHUB_USER_CREDENTIAL_USR}  ghcr.oi/tayfunakbas/codestock/nginx:0.0.1
+           sh '''docker login -u  ${GITHUB_USER_CREDENTIAL_PSW} -p ${GITHUB_USER_CREDENTIAL_USR}  ghcr.oi/tayfunakbas/codestock/nginx:0.0.1
            docker pull ghcr.oi/tayfunakbas/codestock/nginx:0.0.1'''
             }
         }
