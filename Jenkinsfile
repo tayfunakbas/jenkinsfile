@@ -7,10 +7,20 @@ pipeline {
     
     stages {
         
-        stage('Get Source Code From Github') {
-            steps{
-           sh '''docker login -u  ${GITHUB_USER_CREDENTIAL_PSW} -p ${GITHUB_USER_CREDENTIAL_USR}  ghcr.oi/tayfunakbas/codestock/nginx:0.0.1
-           docker pull ghcr.oi/tayfunakbas/codestock/nginx:0.0.1'''
+//         stage('Get Source Code From Github') {
+//             steps{
+//            sh '''docker login -u  ${GITHUB_USER_CREDENTIAL_PSW} -p ${GITHUB_USER_CREDENTIAL_USR}  ghcr.oi/tayfunakbas/codestock/nginx:0.0.1
+//            docker pull ghcr.oi/tayfunakbas/codestock/nginx:0.0.1'''
+//             }
+//         }
+        
+       stage('Clone Helm Values From GitLab'){
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'githubcred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh '''#!/bin/bash -e
+                        docker pull ${USERNAME}:${PASSWORD}@ghcr.oi/tayfunakbas/codestock/nginx:0.0.1}
+                    '''
+                }
             }
         }
 
