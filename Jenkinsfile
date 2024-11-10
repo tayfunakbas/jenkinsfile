@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment{
-    GITHUB_USER_CREDENTIAL = credentials('githubcred')
+    GITHUB_USER_CREDENTIAL = credentials('githubcred-1')
     }
     
     stages {
